@@ -1,0 +1,261 @@
+#Declare constants
+price_per_night = 45.00
+breakfast_price = 8.75
+discount1 = 0.05
+discount2 = 0.075
+
+def get_name():
+    flag = True
+
+    while flag:
+        name = input("Please enter your name: ")
+
+        if len(name) < 2 or len(name) > 50:
+            print("Sorry, you did not enter a valid name")
+            flag = True 
+        else:
+            for char in name:
+                if char.isdigit():
+                    print("Sorry, you did not enter a valid name")
+                    flag = True
+                    break
+            else:
+                return name
+
+
+def phone_num():
+    flag = True
+
+    while flag:
+        number = input("Please enter your phone number: ")
+
+        try:
+            int(number)
+        except:
+            print("Sorry, you did not enter a valid number")
+            flag = True
+        else:
+            if len(number) < 10 or len(number) > 15:  # A phone number is generally 10-15 digits
+                print("Sorry, you did not enter a valid number")
+                flag = True
+            else:
+                return number
+
+
+def get_email():
+    flag = True
+
+    while flag:
+        email = input("Please enter your email address: ")
+
+        if "@" not in email:
+            print("Sorry, you did not enter a valid email address")
+            print("Your email must contain the '@' symbol")
+            flag = True
+        else:
+            return email
+
+
+def hotel_choice():
+    print("###############################################")
+    print("Please choose the hotel location")
+    print("1. London")
+    print("2. Manchester")
+    print("3. Edinburgh")
+    print("###############################################")
+
+    choice = input("Please enter the number of your choice (1-3): ")
+    locations = ["London", "Manchester", "Edinburgh"]
+
+    hotel = locations[int(choice)-1]
+    return hotel 
+
+
+def get_arrival_date():
+    flag = True
+    
+    while flag:
+        date = input("Please enter the date of arrival (DD/MM/YYYY): ")
+  
+        if len(date) != 10:
+            print("The date has to be in the format DD/MM/YYYY")
+            flag = True
+        elif not date[:2].isdigit() or not date[3:5].isdigit() or not date[6:].isdigit():
+            print("Incorrect date format entered.")
+            flag = True
+        elif not date[2] == "/" or not date[5] == "/":
+            print("Incorrect date format entered. You must use '/' as the date separator.")
+            flag = True
+        else:
+            return date
+
+
+def get_stay_length():
+    flag = True
+    
+    while flag:
+        nights = input("Please enter the number of nights you wish to stay: ")
+        
+        try:
+            int(nights)
+        except:
+            print("Sorry, you did not enter a valid input")
+            flag = True
+        else:
+            if int(nights) < 1:
+                print("Sorry, you did not enter a valid input")
+                flag = True
+            else:
+                return int(nights)
+
+
+def get_number_people():
+    flag = True
+    
+    while flag:
+        people = input("Please enter the number of people: ")
+        
+        try:
+            int(people)
+        except:
+            print("Sorry, you did not enter a valid input")
+            flag = True
+        else:
+            if int(people) < 1:
+                print("Sorry, you did not enter a valid input")
+                flag = True
+            else:
+                return int(people)
+
+
+def get_breakfast():
+    flag = True
+    
+    while flag:
+        choice = input("Would you like to include breakfast? (Y/N) ").upper()
+        
+        if choice == "Y" or choice == "N":
+            return choice
+        else:
+            print("Sorry, you did not enter a valid input")
+            flag = True 
+
+
+#get the personal details
+name = get_name()
+address = input("Please enter your address: ")
+phone_number = phone_num()
+email_add = get_email()
+
+
+#Get the stay details
+location = hotel_choice()
+date = get_arrival_date()
+number_of_nights =  get_stay_length()
+number_people = get_number_people()
+breakfast = get_breakfast()
+
+
+room_cost = (price_per_night * number_people) * number_of_nights
+
+def calculate_breakfast():
+    if breakfast == "Y":
+        breakfast_cost = (float(breakfast_price) * number_people) * number_of_nights
+    else:
+        breakfast_cost = 0.00
+    
+    return breakfast_cost
+
+breakfast_cost = calculate_breakfast()
+
+subtotal = room_cost + breakfast_cost
+
+def returning_cust():
+    flag = True
+    
+    while flag:
+        returning = input("Have you stayed with us before? (Y/N) ").upper()
+        
+        if returning == "Y" or returning == "N":
+            return returning
+        else:
+            print("Sorry, you did not enter a valid input")
+            flag = True 
+
+returning_customer = returning_cust()
+
+def length_discount():
+    if number_of_nights >= 10:
+        len_discount = "Yes"
+    else:
+        len_discount = "No"
+    
+    return len_discount
+
+len_discount = length_discount()
+
+def calculate_discount():
+    discounts = subtotal
+
+    if returning_customer == "Y" and len_discount == "Yes":
+        print("Welcome back. A loyalty discount has been applied to your bill")
+        print("Also, you get a discount for staying for 10 nights or more")
+        discounts = discounts * (1 - discount1) * (1 - discount2)  # Apply both discounts
+    elif returning_customer == "Y" and len_discount == "No":
+        print("Welcome back. A loyalty discount has been applied to your bill")
+        discounts = discounts * (1 - discount1)
+    elif returning_customer == "N" and len_discount == "Yes":
+        print("You have been given a discount for staying for 10 nights or more")
+        discounts = discounts * (1 - discount2)
+    
+    return discounts
+
+discount_value = calculate_discount()
+
+totalCost = subtotal - discount_value
+
+#generate screen output
+print("Here is a receipt for your records")
+print("#########Booking Details##############")
+print("Name: ", name)
+print("Address: ", address)
+print("Phone Number: ", phone_number)
+print("Email: ", email_add)
+print("Booked Hotel: ", location)
+print("Date of Arrival: ", date)
+print("Number of Nights: ", number_of_nights)
+print("Number of People: ", number_people)
+print("Breakfast: ", breakfast)
+print("")
+print("##############Costs################")
+print("Room: £", room_cost)
+print("Breakfast: £", breakfast_cost)
+print("Return Discount: ", returning_customer)
+print("10 Nights or More: ", len_discount)
+print("Cost before discounts: £", subtotal)
+print('Discounts: -£', discount_value)
+print("Total cost of stay: £", totalCost)
+
+
+#output to text file
+with open("receipt.txt", "w") as txt:
+    txt.write("Here is a receipt for your records\n")
+    txt.write("#########Booking Details##############\n")
+    txt.write("Name: {}\n".format(name))
+    txt.write("Address: {}\n".format(address))
+    txt.write("Phone Number: {}\n".format(phone_number))
+    txt.write("Email: {}\n".format(email_add))
+    txt.write("Booked Hotel: {}\n".format(location))
+    txt.write("Date of Arrival: {}\n".format(date))
+    txt.write("Number of Nights: {}\n".format(number_of_nights))
+    txt.write("Number of People: {}\n".format(number_people))
+    txt.write("Breakfast: {}\n".format(breakfast))
+    txt.write("\n")
+    txt.write("##############Costs################\n")
+    txt.write("Room: £ {}\n".format(room_cost))
+    txt.write("Breakfast: £ {}\n".format(breakfast_cost))
+    txt.write("Return Discount: {}\n".format(returning_customer))
+    txt.write("10 Nights or More: {}\n".format(len_discount))
+    txt.write("Cost before discounts: £ {}\n".format(subtotal))
+    txt.write("Discounts: -£ {}\n".format(discount_value))
+    txt.write("Total cost of stay: £ {}\n".format(totalCost))

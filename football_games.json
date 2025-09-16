@@ -1,0 +1,16 @@
+[
+    {
+        "game_title": "Champions League Final",
+        "date": "2025-05-30",
+        "home_team": "Team A",
+        "away_team": "Team B",
+        "score": "2-1"
+    },
+    {
+        "game_title": "Local Derby",
+        "date": "2025-06-05",
+        "home_team": "Team C",
+        "away_team": "Team D",
+        "score": "1-1"
+    }
+]

@@ -1,0 +1,16 @@
+[
+    {
+        "event_name": "Music Festival",
+        "registration_date": "2025-03-20",
+        "participant_age": 35,
+        "ticket_price": 129.99,
+        "is_attending": true
+    },
+    {
+        "event_name": "Food Festival",
+        "registration_date": "2025-04-10",
+        "participant_age": 40,
+        "ticket_price": 79.99,
+        "is_attending": false
+    }
+]

@@ -1,0 +1,20 @@
+Here is a receipt for your records
+#########Booking Details##############
+Name: bob
+Address: 43 frere rpad
+Phone Number: 0780192519
+Email: ciara@gmail.com
+Booked Hotel: London
+Date of Arrival: 01/01/2025
+Number of Nights: 7
+Number of People: 3
+Breakfast: Y
+
+##############Costs################
+Room: £ 945.0
+Breakfast: £ 183.75
+Return Discount: Y
+10 Nights or More: No
+Cost before discounts: £ 1128.75
+Discounts: -£ 1072.3125
+Total cost of stay: £ 56.4375

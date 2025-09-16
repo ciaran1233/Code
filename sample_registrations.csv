@@ -1,0 +1,3 @@
+event_name,registration_date,participant_age,ticket_price,is_attending
+Music Festival,2025-03-20,35,129.99,True
+Food Festival,2025-04-10,40,79.99,False

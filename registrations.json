@@ -1,0 +1,16 @@
+[
+    {
+        "event_name": "Tech Conference",
+        "registration_date": "2025-01-30",
+        "participant_age": 30,
+        "ticket_price": 99.99,
+        "is_attending": true
+    },
+    {
+        "event_name": "Art Workshop",
+        "registration_date": "2025-02-15",
+        "participant_age": 25,
+        "ticket_price": 49.99,
+        "is_attending": false
+    }
+]

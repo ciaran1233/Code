@@ -1,0 +1,3 @@
+event_name,registration_date,participant_age,ticket_price,is_attending
+Tech Conference,2025-01-30,30,99.99,True
+Art Workshop,2025-02-15,25,49.99,False
